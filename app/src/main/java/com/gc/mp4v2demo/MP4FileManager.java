@@ -18,6 +18,7 @@ public class MP4FileManager {
                     File.separator + "FromMac";
 
     List<String> mFileList = new ArrayList<>();
+    List<String> mFiles = new ArrayList<>();
 
 
     MP4FileManager() {
@@ -25,18 +26,22 @@ public class MP4FileManager {
     }
 
     private void scanMP4Files() {
-        mFileList = new ArrayList<>();
         Log.i(TAG, "path:" + mPath);
         File files = new File(mPath);
         File[] mp4files = files.listFiles();
         for (File mp4file : mp4files) {
             Log.i(TAG, mp4file.getName());
             mFileList.add(mPath + File.separator + mp4file.getName());
+            mFiles.add(mp4file.getName());
         }
     }
 
     public List<String> getFileList() {
         return mFileList;
+    }
+
+    public List<String> getFiles() {
+        return mFiles;
     }
 
     public void setCur(String filename) {

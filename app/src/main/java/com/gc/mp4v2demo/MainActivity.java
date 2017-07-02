@@ -31,47 +31,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main);
         ListView listView = (ListView) findViewById(R.id.mp4list);
 
-        mMp4List = scanMP4Files();
+        MP4FileManager fileManager = new MP4FileManager();
+        mMp4List = fileManager.getFileList();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_expandable_list_item_1);
-        adapter.addAll(mMp4List);
+        adapter.addAll(fileManager.getFiles());
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(mListener);
     }
 
-    private List<String> scanMP4Files() {
-        List<String> mp4fileList = new ArrayList<>();
-
-        Log.i(TAG, "path:" + mPath);
-        File files = new File(mPath);
-        File[] mp4files = files.listFiles();
-        for (File mp4file : mp4files) {
-            Log.i(TAG, mp4file.getName());
-            mp4fileList.add(mp4file.getName());
-        }
-
-        return mp4fileList;
-    }
 
     private OnItemClickListener mListener = new OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            String filepath = mPath + File.separator + mMp4List.get(position);
-//            mMp4Info = mMp4v2Codec.getVideoInfo();
-//            Log.i(TAG, "file: " + mMp4List.get(position) + " Samples = " + String.valueOf(mMp4Info.getSamples()) +
-//                    " Framerate = " + String.valueOf(mMp4Info.getFramerate()));
 
             Intent intent = new Intent();
             intent.setClass(MainActivity.this, MP4PlayActivity.class);
-            intent.putExtra(ARG_FILENAME, filepath);
+            intent.putExtra(ARG_FILENAME, mMp4List.get(position));
             startActivity(intent);
-            /*
-            Log.i(TAG, "SPS: ");
-            printHexString(mMp4Info.getSpsHeader());
-
-            Log.i(TAG, "PPS: ");
-            printHexString(mMp4Info.getPpsHeader());
-            */
 
         }
     };
