@@ -17,10 +17,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private final String ARG_FILENAME = "filename";
 
-    private static final String mPath =
-            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() +
-                    File.separator + "FromMac";
-
     private static final String TAG = "MainActivity";
 
     private List<String> mMp4List;
