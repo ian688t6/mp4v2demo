@@ -1,6 +1,9 @@
 package com.gc.mp4v2demo;
 
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Environment;
 import android.util.Log;
 
@@ -50,7 +53,6 @@ public class MP4FileManager {
             String file = mFileList.get(i);
             if (file.contentEquals(filename)) {
                 mFileId = i;
-                Log.i(TAG, "====== mFiled =====" + String.valueOf(mFileId));
                 return ;
             }
         }
@@ -86,4 +88,14 @@ public class MP4FileManager {
         return mFileList.get(mFileId);
     }
 
+    public void setListener(Context context) {
+        Log.i(TAG, "setListener");
+//        IntentFilter intentFilter = new IntentFilter();
+//        intentFilter.addAction(Intent.ACTION_MEDIA_EJECT);
+//        intentFilter.addAction(Intent.ACTION_MEDIA_MOUNTED);
+//        intentFilter.addAction(Intent.ACTION_MEDIA_REMOVED);
+//        intentFilter.addDataScheme("file");
+//        MP4UsbManager usbReceiver = new MP4UsbManager();
+//        context.registerReceiver(usbReceiver, intentFilter);
+    }
 }

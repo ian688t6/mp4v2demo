@@ -99,6 +99,7 @@ public class MP4VideoPlayer implements MP4Player {
     }
 
     public void seek(int progress) {
+
         if (0 == progress) {
             mProgress = 1;
         } else {
@@ -126,7 +127,6 @@ public class MP4VideoPlayer implements MP4Player {
             mDecoder.releaseOutputBuffer(outIndex, true);
         }
         mProgress = 1;
-//        mRunning = running;
     }
 
     private int decode(int sampleId) {
