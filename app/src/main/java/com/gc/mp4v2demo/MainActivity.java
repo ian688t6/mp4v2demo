@@ -24,9 +24,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        MP4FileManager fileManager = new MP4FileManager();
-        fileManager.setListener(this);
+
         mManager = new MP4UsbManager(this);
+
+        MP4FileManager fileManager = new MP4FileManager();
         mMp4List = fileManager.getFileList();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_expandable_list_item_1);
@@ -48,6 +49,5 @@ public class MainActivity extends AppCompatActivity {
 
         }
     };
-
 
 }
